@@ -1,4 +1,5 @@
 # ComfyUI 贪吃蛇游戏节点
+![2025-5-8](https://github.com/user-attachments/assets/b9df7e18-8330-48cf-8afd-6246acd66565)
 
 这是一个为 ComfyUI 开发的有趣的贪吃蛇游戏节点。在 ComfyUI 工作流中添加一个可以玩贪吃蛇的小游戏，让你在等待图片生成的过程中不会感到无聊！
 
