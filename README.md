@@ -1,7 +1,8 @@
 # ComfyUI 贪吃蛇游戏节点
 ![2025-5-8](https://github.com/user-attachments/assets/b9df7e18-8330-48cf-8afd-6246acd66565)
 
-这是一个为 ComfyUI 开发的有趣的贪吃蛇游戏节点。在 ComfyUI 工作流中添加一个可以玩贪吃蛇的小游戏，让你在等待图片生成的过程中不会感到无聊！
+这是一个为 ComfyUI 开发的顶级贪吃蛇游戏节点。在 ComfyUI 工作流中添加一个可以玩贪吃蛇的小游戏，让你在等待图片生成(上班摸鱼)的过程中不会感到无聊。
+韩铖不允许玩
 
 ## 功能特点
 
@@ -57,9 +58,6 @@ git clone [repository_url] ComfyUI-SnakeGameNode
 - 建议将节点放在工作流的空闲位置，避免遮挡其他重要节点
 
 
-## 贡献
-
-欢迎提交 Issue 和 Pull Request！
 
 ## 更新日志
 
