@@ -55,9 +55,6 @@ git clone [repository_url] ComfyUI-SnakeGameNode
 - 关闭或删除节点时会自动清理游戏资源
 - 建议将节点放在工作流的空闲位置，避免遮挡其他重要节点
 
-## 许可证
-
-MIT License
 
 ## 贡献
 
