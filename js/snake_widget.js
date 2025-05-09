@@ -13,10 +13,14 @@ app.registerExtension({
                 const gameContainer = document.createElement("div");
                 gameContainer.id = `snake-game-container-${this.id}`;
                 gameContainer.style.width = "100%";
-                gameContainer.style.height = "280px";
                 gameContainer.style.border = "1px solid #555";
+                gameContainer.style.display = "flex";
+                gameContainer.style.flexDirection = "column";
+                gameContainer.style.alignItems = "center";
                 gameContainer.innerHTML = `
-                    <canvas id="snakeCanvas-${this.id}" width="280" height="180" style="background-color: #222; display: block; margin: 5px auto;"></canvas>
+                    <div style="width: 100%; max-width: 420px;">
+                        <canvas id="snakeCanvas-${this.id}" style="width: 100%; aspect-ratio: 14/9; background-color: #222; display: block; margin: 5px auto; max-width: 420px;"></canvas>
+                    </div>
                     <div id="score-${this.id}" style="color: white; text-align: center; font-size: 12px;">Score: 0</div>
                     <div style="text-align: center; margin-top: 10px;">
                         <button id="up-${this.id}" style="width: 40px; height: 40px; margin: 2px;">↑</button><br>
