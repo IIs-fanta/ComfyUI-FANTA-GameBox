@@ -20,7 +20,7 @@
 1. 将此仓库克隆到ComfyUI的`custom_nodes`目录下：
 ```bash
 cd ComfyUI/custom_nodes
-git clone https://github.com/yourusername/ComfyUI-SnakeGameNode.git
+git clone [https://github.com/IIs-fanta/ComfyUI-FANTA-GameBox.git](https://github.com/IIs-fanta/ComfyUI-FANTA-GameBox.git)
 ```
 
 2. 重启ComfyUI
