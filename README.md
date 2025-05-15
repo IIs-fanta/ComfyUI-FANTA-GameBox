@@ -81,14 +81,7 @@ git clone https://github.com/ComfyUI-aki-v1.6/ComfyUI-FANTA-GameBox.git
 - 支持多个游戏节点同时运行
 - 游戏界面会随节点大小自动调整
 
-## 更新日志
 
-### v1.0.0
-- 添加贪吃蛇游戏
-- 添加像素鸟游戏
-- 支持基本的游戏控制
-- 支持分数显示
-- 支持游戏状态提示
 
 ## 许可证
 
