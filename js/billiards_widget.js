@@ -71,7 +71,7 @@ app.registerExtension({
                 const TABLE_WIDTH = canvas.width;
                 const TABLE_HEIGHT = canvas.height;
                 const CUSHION = 20;
-                const POCKET_RADIUS = BALL_RADIUS * 1.5;
+                const POCKET_RADIUS = BALL_RADIUS * 2;
 
                 // 球袋位置
                 const POCKETS = [
@@ -303,10 +303,45 @@ app.registerExtension({
                         ctx.lineTo(aimEnd.x, aimEnd.y);
                         ctx.stroke();
 
-                        // 绘制力度指示器
-                        const dx = aimEnd.x - aimStart.x;
-                        const dy = aimEnd.y - aimStart.y;
+                        // 绘制击球路径线
+                        const dx = aimStart.x - aimEnd.x;
+                        const dy = aimStart.y - aimEnd.y;
                         const power = Math.min(Math.sqrt(dx * dx + dy * dy) / 5, 20);
+                        const angle = Math.atan2(dy, dx);
+                        
+                        // 计算母球的预期路径
+                        let pathX = gameState.cueBall.x;
+                        let pathY = gameState.cueBall.y;
+                        let velocityX = Math.cos(angle) * power;
+                        let velocityY = Math.sin(angle) * power;
+                        
+                        // 绘制虚线路径
+                        ctx.beginPath();
+                        ctx.strokeStyle = 'rgba(255, 255, 255, 0.3)';
+                        ctx.setLineDash([5, 5]);
+                        ctx.moveTo(pathX, pathY);
+                        
+                        // 模拟球的运动轨迹
+                        for (let i = 0; i < 20; i++) {
+                            pathX += velocityX;
+                            pathY += velocityY;
+                            velocityX *= FRICTION;
+                            velocityY *= FRICTION;
+                            
+                            // 检查边界碰撞
+                            if (pathX - BALL_RADIUS < 0 || pathX + BALL_RADIUS > TABLE_WIDTH) {
+                                velocityX *= -1;
+                            }
+                            if (pathY - BALL_RADIUS < 0 || pathY + BALL_RADIUS > TABLE_HEIGHT) {
+                                velocityY *= -1;
+                            }
+                            
+                            ctx.lineTo(pathX, pathY);
+                        }
+                        ctx.stroke();
+                        ctx.setLineDash([]); // 重置虚线样式
+
+                        // 绘制力度指示器
                         const powerPercentage = (power / 20) * 100;
                         
                         ctx.fillStyle = 'white';
@@ -514,20 +549,68 @@ app.registerExtension({
                         aimStart = { x: gameState.cueBall.x, y: gameState.cueBall.y };
                         aimEnd = mousePos;
                         console.log("Started aiming");
+                        
+                        // 添加document级别的鼠标事件监听
+                        document.addEventListener('mousemove', handleMouseMove);
+                        document.addEventListener('mouseup', handleMouseUp);
                     }
                 });
 
+                // 移除canvas的mousemove和mouseup事件监听
                 canvas.addEventListener('mousemove', (e) => {
                     if (!isAiming) return;
                     aimEnd = getMousePos(canvas, e);
                 });
 
-                canvas.addEventListener('mouseup', (e) => {
+                // 处理document级别的鼠标移动
+                function handleMouseMove(e) {
                     if (!isAiming) return;
-                    console.log("Mouse up, attempting shot");
                     
-                    const mousePos = getMousePos(canvas, e);
-                    aimEnd = mousePos;
+                    // 获取鼠标相对于画布的位置
+                    const rect = canvas.getBoundingClientRect();
+                    const scaleX = canvas.width / rect.width;
+                    const scaleY = canvas.height / rect.height;
+                    
+                    // 计算鼠标在画布坐标系中的位置
+                    let mouseX = (e.clientX - rect.left) * scaleX;
+                    let mouseY = (e.clientY - rect.top) * scaleY;
+                    
+                    // 限制鼠标位置在画布范围内
+                    mouseX = Math.max(0, Math.min(canvas.width, mouseX));
+                    mouseY = Math.max(0, Math.min(canvas.height, mouseY));
+                    
+                    aimEnd = { x: mouseX, y: mouseY };
+                }
+
+                // 处理document级别的鼠标释放
+                function handleMouseUp(e) {
+                    if (!isAiming) return;
+                    
+                    // 移除document级别的事件监听
+                    document.removeEventListener('mousemove', handleMouseMove);
+                    document.removeEventListener('mouseup', handleMouseUp);
+                    
+                    // 获取鼠标相对于画布的位置
+                    const rect = canvas.getBoundingClientRect();
+                    const scaleX = canvas.width / rect.width;
+                    const scaleY = canvas.height / rect.height;
+                    
+                    // 计算鼠标在画布坐标系中的位置
+                    let mouseX = (e.clientX - rect.left) * scaleX;
+                    let mouseY = (e.clientY - rect.top) * scaleY;
+                    
+                    // 限制鼠标位置在画布范围内
+                    mouseX = Math.max(0, Math.min(canvas.width, mouseX));
+                    mouseY = Math.max(0, Math.min(canvas.height, mouseY));
+                    
+                    aimEnd = { x: mouseX, y: mouseY };
+                    executeShot();
+                }
+
+                // 抽取击球逻辑为单独的函数
+                function executeShot() {
+                    if (!isAiming) return;
+                    console.log("Executing shot");
                     
                     // 计算击球方向和力度
                     const dx = aimStart.x - aimEnd.x;
@@ -554,7 +637,7 @@ app.registerExtension({
                     aimEnd = null;
                     
                     console.log("Shot completed");
-                });
+                }
 
                 // 事件监听
                 startButton.onclick = () => {
