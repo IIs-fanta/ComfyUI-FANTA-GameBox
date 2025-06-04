@@ -1,106 +1,102 @@
-# FANTA游戏盒
+# FANTA GameBox
 
-这是一个为ComfyUI设计的游戏节点集合，目前包含以下游戏：
+A collection of game nodes for ComfyUI, currently featuring:
 
-- 🎱 台球游戏
-- 🐍 贪吃蛇游戏
-- 🐦 像素鸟游戏
-- 🧱 打砖块游戏
+- 🎱 Billiards Game
+- 🐍 Snake Game
+- 🐦 Flappy Bird
+- 🧱 Brick Breaker
 
+## Billiards Game
+- Click near the white cue ball to start aiming
+- Hold and drag the mouse to adjust direction and power
+- Release to shoot
+- Score and shot count tracking
+- Shows total shots when all balls are pocketed
+- Click "Reset Game" to start over
 
+## Snake Game
+- Use arrow keys to control the snake
+- Press space to pause/resume
+- Press enter to restart
+- Click canvas to start
+- Score display and game status indicators
 
-## 台球游戏 (Billiards Game)
-- 使用鼠标点击白色母球附近开始瞄准
-- 按住鼠标并拖动来调整击球方向和力度
-- 松开鼠标完成击球
-- 支持分数和击球次数统计
-- 当所有球都打进后显示总击球次数
-- 点击"重置游戏"可以重新开始
+## Flappy Bird
+- Remember to maximize the window for best experience
+- Use space bar to control the bird
+- Press enter to start/restart
+- Click canvas to control the bird
+- Score display and game status indicators
 
-## 贪吃蛇游戏 (Snake Game)
-- 使用方向键控制蛇的移动
-- 按空格键暂停/继续游戏
-- 按回车键重新开始游戏
-- 点击画布开始游戏
-- 支持分数显示和游戏状态提示
+## Brick Breaker
+- Use arrow keys or mouse to control the paddle
+- Press enter to start/restart
+- Score and lives display
+- Special brick effects:
+  - Red bricks: Requires 3 hits
+  - Yellow bricks: Requires 2 hits
+  - Green bricks: Bonus points
+  - Purple bricks: Creates double ball effect
+- Pause/resume support
+- Difficulty increases with score
 
-## 像素鸟游戏 (Flappy Bird)
-- 记得把窗口拉最大玩
-- 使用空格键控制小鸟飞行
-- 按回车键开始/重新开始游戏
-- 点击画布控制小鸟飞行
-- 支持分数显示和游戏状态提示
+## Installation
 
-## 打砖块游戏 (Brick Breaker)
-- 使用方向键或鼠标控制挡板移动
-- 按回车键开始/重新开始游戏
-- 支持分数和生命值显示
-- 支持特殊砖块效果：
-  - 红色砖块：需要击中3次
-  - 黄色砖块：需要击中2次
-  - 绿色砖块：击中获得额外分数
-  - 紫色砖块：击中产生双球效果
-- 支持游戏暂停/继续
-- 支持难度随分数提升
-
-## 安装方法
-
-1. 将此仓库克隆到ComfyUI的`custom_nodes`目录下：
+1. Clone this repository to ComfyUI's `custom_nodes` directory:
 ```bash
 cd ComfyUI/custom_nodes
 git clone https://github.com/ComfyUI-aki-v1.6/ComfyUI-FANTA-GameBox.git
 ```
 
-2. 重启ComfyUI
+2. Restart ComfyUI
 
-## 使用方法
+## Usage
 
-1. 在ComfyUI的节点菜单中找到"游戏"分类
-2. 选择想要添加的游戏节点
-3. 将节点添加到工作流中
-4. 开始游戏！
+1. Find the "Games" category in ComfyUI's node menu
+2. Select the desired game node
+3. Add the node to your workflow
+4. Start playing!
 
-## 注意事项
+## Notes
 
-- 游戏节点不需要任何输入或输出
-- 游戏状态会自动保存
-- 支持多个游戏节点同时运行
-- 游戏界面会随节点大小自动调整
+- Game nodes don't require any inputs or outputs
+- Game state is automatically saved
+- Multiple game nodes can run simultaneously
+- Game interface automatically adjusts to node size
 
-  ## 更新日志
-  
-### v1.2.1台球游戏更新
-1. 游戏性改进
-   - 增加了台球洞的判定范围（从1.5倍球半径改为2倍）
-   - 添加了击球路径预测线，帮助玩家预判球的运动轨迹
-   - 优化了蓄力系统，支持跨窗口蓄力操作
+## Changelog
 
-2. 操作体验优化
-   - 改进了鼠标控制逻辑，支持在窗口外蓄力
-   - 添加了虚线路径显示，包含边界碰撞预测
-   - 优化了力度计算和显示
+### v1.2.1 Billiards Game Update
+1. Gameplay Improvements
+   - Increased pocket detection range (from 1.5x to 2x ball radius)
+   - Added shot path prediction line
+   - Optimized power system with cross-window support
 
-3. 视觉反馈
-   - 添加了半透明的击球路径线
-   - 优化了瞄准线的显示效果
-   - 改进了力度指示器的显示
+2. Control Experience
+   - Improved mouse control logic with out-of-window power control
+   - Added dotted path display with boundary collision prediction
+   - Optimized power calculation and display
+
+3. Visual Feedback
+   - Added semi-transparent shot path line
+   - Enhanced aiming line display
+   - Improved power indicator visualization
 
 ### v1.2.0
-- 添加台球游戏
-- 支持鼠标控制击球方向和力度
-- 支持分数和击球次数统计
-- 完整的物理碰撞系统
-- 游戏结束结算界面
+- Added Billiards Game
+- Mouse control for direction and power
+- Score and shot count tracking
+- Complete physics collision system
+- Game over summary screen
 
 ### v1.1.0
-- 添加打砖块游戏
-- 支持鼠标和键盘控制
-- 支持分数和生命值显示
-- 支持特殊砖块效果
-- 支持多球模式
+- Added Brick Breaker game
+- Mouse and keyboard controls
+- Score and lives display
+- Special brick effects
+- Multi-ball mode support
 
-
-
-## 许可证
+## License
 
 MIT License
